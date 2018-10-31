@@ -35,7 +35,7 @@ module.exports = PollCommand = {
                 message.channel.send(mention(message.author.id) + 'calme toi ! Ce n\'est pas encore l\'heure du vote :wink:')
             } else {
                 if (args[0] == 'vote'){
-                    if (args[1].match(/^[0-9]*$/) && args[1] > 0 && args[1] <= array.length+1){
+                    if (args[1].match(/^[0-9]*$/) && args[1] > 0 && args[1] <= params.choices.length+1){
                         let vote = args[1] - 1
                         votes[vote] = votes[vote] + 1
                         voters.push(message.author.id)
