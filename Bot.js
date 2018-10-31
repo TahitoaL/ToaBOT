@@ -1,5 +1,3 @@
-// import { Client, GuildMember, Message, Role } from 'discord.js'
-
 module.exports = class Bot {
 
     constructor (client, apiKey) {
@@ -25,18 +23,20 @@ module.exports = class Bot {
 
     onMessage(message) {
         if (message.content.startsWith('!')){
-            console.log('commande détectée')
             this.runCommand(message)
         }
     }
 
     runCommand(message){
-        let commandParts = message.content.slice(' ')
+        let commandParts = message.content.split(' ')
         let commandName = commandParts[0].replace('!', '')
         let command = this.commands.find((c) => c.slug === commandName)
         if (command == undefined){
-            console.log('commande inconnue')
+            message.channel.send('Commande inconnue... :cry:')
             return false
+        } else {
+            console.log('Lancement de la commande : '  + commandName)
+            command.run(message, commandParts.slice(1))
         }
     }
 }

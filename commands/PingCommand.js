@@ -1,18 +1,8 @@
-// import { Messages } from 'discord.js'
-let Command = require('./Command')
-
-module.exports = class PingCommand extends Command {
-
-    constructor() {
-        // this.null = null
+module.exports = PingCommand = {
+    name: 'Ping', 
+    description: 'Vérification du fonctionnement du bot',
+    slug:'ping',
+    async run (message, args) {
+        message.channel.send('<@' + message.author.id + '> pong!')
     }
-
-    name = 'Ping'
-    description = 'Vérification du fonctionnement du bot'
-    slug = 'ping'
-
-    async run (message, args){
-        await this.replyDM('Pong', message)
-    }
-
 }
