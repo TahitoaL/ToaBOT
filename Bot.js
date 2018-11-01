@@ -4,6 +4,7 @@ module.exports = class Bot {
         this.commands = []
         this.apiKey = apiKey
         this.client = client
+        this.commandBegin = '!'
         this.client.on('ready', () => {
             this.client.user.setActivity('Taper sur des pandas')
             console.log('Bot pret')
@@ -22,14 +23,14 @@ module.exports = class Bot {
     }
 
     onMessage(message) {
-        if (message.content.startsWith('!')){
+        if (message.content.startsWith(this.commandBegin)){
             this.runCommand(message)
         }
     }
 
     runCommand(message){
         let commandParts = message.content.split(' ')
-        let commandName = commandParts[0].replace('!', '')
+        let commandName = commandParts[0].replace(this.commandBegin, '')
         let command = this.commands.find((c) => c.slug === commandName)
         if (command == undefined){
             message.channel.send('Commande inconnue... :cry:')
