@@ -2,6 +2,6 @@
 
 Node JS based Discord Bot
 
-##Commands
+## Commands
 * **!help** : aide
 * **!poll** : sondage
