@@ -168,7 +168,8 @@ module.exports = class Vote {
     endPoll () {
         if (this.state == 1) {
             this.state = 2
-            this.channel.send('Arrêt des votes !')            
+            this.channel.send('Arrêt des votes !')     
+            console.log(this.votes)       
         }
     }
 
@@ -179,27 +180,30 @@ module.exports = class Vote {
                 for (let i = 0; i < this.choices.length; i++){
                     results.push(0)
                 }
-                for (let vote in this.votes){
-                    results[vote.choice] = results[vote.choices] + 1
-                }
+                this.votes.forEach((vote) => {
+                    results[vote.choice] = results[vote.choice] + 1
+                })
+                console.log(results)
                 let winners = []
-                let max = 0
+                let max = Math.max(...results)
+                console.log(max)
                 let i = 0
+                let listStr = 'Résultats :'
                 results.forEach((result) => {
-                    if (result > results[max]){
-                        max = i
+                    listStr += '\n' + this.choices[i] + ' a recu ' + result + ' voix (' + Math.round((result/this.votes.length)*100) + '%)'
+                    if (result == max){
+                        winners.push(this.choices[i])
                     }
                     i++
                 })
-                results.forEach((result) => {
-                    if (result == results[max]){
-                        winners.push(this.choices[result])
-                    }
-                })
-                let res = ''
+                this.channel.send(listStr)
+                let res = '**'
+                i = 0
                 winners.forEach((winner) => {
-                    res += winner + ' '
+                    i == 0 ? res += winner : res+= '**, **' + winner
+                    i++
                 })
+                res+= '** '
                 winners.length > 1 ? res+= 'ont ' : res+= 'a '
                 res+= 'gagné ! :clap:'
                 this.channel.send(res)            
