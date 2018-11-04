@@ -36,8 +36,9 @@ module.exports = class Bot {
             message.channel.send('Commande inconnue... :cry:')
             return false
         } else {
-            console.log('Lancement de la commande : '  + commandName)
-            command.run(message, commandParts.slice(1))
+            let args = commandParts.slice(1)
+            console.log(new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') + ' : @' + message.author.username + ' utilise '  + commandName + ' : ' + args)
+            command.run(message, args)
         }
     }
 }
