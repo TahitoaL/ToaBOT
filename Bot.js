@@ -7,9 +7,10 @@ module.exports = class Bot {
         this.commandBegin = '!'
         this.client.on('ready', () => {
             this.client.user.setActivity('Taper sur des pandas')
-            console.log('Bot pret')
+            console.log('Initialisation terminée !')
         })
         this.client.on('message', this.onMessage.bind(this))
+        this.channels = []
     }
 
     async connect () {

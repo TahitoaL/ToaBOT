@@ -25,7 +25,7 @@ module.exports = PollCommand = {
                 }
                 break
             case 'set':
-                if (created){
+                if (created && message.author.username == poll.author.username){
                     switch(args[1]){
                         case 'multipleVote':
                             if (args[2] == 'true') poll.enableMultipleVote()
@@ -68,8 +68,15 @@ module.exports = PollCommand = {
                 break
             case 'end':
                 if (created) {
-                    poll.endPoll()
-                    created = false
+                    if (message.author.username == poll.author.username)
+                    {
+                        poll.endPoll()
+                        created = false
+                    }
+                    else
+                    {
+                        message.channel.send(mention(message.author) + ' rentre chez toi !')
+                    }
                 }
                 break
             case 'results':

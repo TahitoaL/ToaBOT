@@ -7,7 +7,7 @@ module.exports = class TicTacToeGame {
         this.board = [[], [], []]
         this.board.forEach((array) => {
             for (let i = 0; i < 3; i++){
-                array[i] = -1
+                array[i] = '2'
             }
         })
     }
@@ -49,7 +49,7 @@ module.exports = class TicTacToeGame {
 
     renderBoard () {
         let res = '__' + this.board[0][0] + '|' + this.board[0][1] + '|' + this.board[0][2] + '__\n__' + this.board[1][0] + '|' + this.board[1][1] + '|' + this.board[1][2] + '__\n' + this.board[2][0] + '|' + this.board[2][1] + '|' + this.board[2][2]
-        res.replace('-1', ' ').replace('0', 'X').replace('1', 'O')
+        res.replace('2', '  ').replace('0', 'X').replace('1', 'O')
         this.channel.send(res)
     }
 

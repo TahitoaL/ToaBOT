@@ -20,6 +20,7 @@ module.exports = PingCommand = {
                         message.channel.send(mention(message.author) + " Vous ne pouvez pas combattre un bot :confused:")
                     } else {
                         let Game = new TicTacToe(message, found.user)
+                        Game.renderBoard()
                     }
                 }
                 console.log(args)
