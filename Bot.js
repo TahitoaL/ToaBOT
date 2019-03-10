@@ -7,9 +7,10 @@ module.exports = class Bot {
         this.commandBegin = '!'
         this.client.on('ready', () => {
             this.client.user.setActivity('Taper sur des pandas')
-            console.log('Bot pret')
+            console.log('Initialisation terminée !')
         })
         this.client.on('message', this.onMessage.bind(this))
+        this.channels = []
     }
 
     async connect () {
@@ -36,8 +37,9 @@ module.exports = class Bot {
             message.channel.send('Commande inconnue... :cry:')
             return false
         } else {
-            console.log('Lancement de la commande : '  + commandName)
-            command.run(message, commandParts.slice(1))
+            let args = commandParts.slice(1)
+            console.log(new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '') + ' : @' + message.author.username + ' utilise '  + commandName + ' : ' + args)
+            command.run(message, args)
         }
     }
 }

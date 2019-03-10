@@ -1,6 +1,7 @@
 let Bot = require('./Bot')
 let Discord = require('discord.js')
 let Commands = require('./commands/index')
+let http = require("http")
 
 require('dotenv').config()
 
