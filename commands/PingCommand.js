@@ -3,6 +3,6 @@ module.exports = PingCommand = {
     description: 'Vérification du fonctionnement du bot',
     slug:'ping',
     async run (message, args) {
-        message.channel.send('<@' + message.author.id + '> pong!')
+        message.channel.send('<@' + message.author.id + '> pong!')        
     }
 }

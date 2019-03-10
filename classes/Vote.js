@@ -168,8 +168,7 @@ module.exports = class Vote {
     endPoll () {
         if (this.state == 1) {
             this.state = 2
-            this.channel.send('Arrêt des votes !')     
-            console.log(this.votes)       
+            this.channel.send('Arrêt des votes !')
         }
     }
 
@@ -183,10 +182,8 @@ module.exports = class Vote {
                 this.votes.forEach((vote) => {
                     results[vote.choice] = results[vote.choice] + 1
                 })
-                console.log(results)
                 let winners = []
                 let max = Math.max(...results)
-                console.log(max)
                 let i = 0
                 let listStr = 'Résultats :'
                 results.forEach((result) => {
