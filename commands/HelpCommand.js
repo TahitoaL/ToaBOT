@@ -6,7 +6,7 @@ module.exports = HelpCommand = {
         let Commands = require('./index')
         let res = 'Aide : \n'
         Commands.forEach((command) => {
-            res += command.name + ' : ' + command.description + '.\n'
+            res += '`!' + command.slug + '`   ' + command.name + ' : ' + command.description + '.\n'
         })
         message.channel.send(res)
     }

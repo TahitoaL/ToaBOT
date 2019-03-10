@@ -64,3 +64,4 @@ typings/
 test.js
 
 .vscode/
+tmp/
